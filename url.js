@@ -283,6 +283,14 @@
 				(this.hash && ('#' + encode(this.hash)))
 			);
 		};
+		
+	        this.toRelativeString = function() {
+			return (
+				(this.path && this.path) +
+				(this.query.toString() && ('?' + this.query)) +
+				(this.hash && ('#' + encode(this.hash)))
+			);
+	        };
 
 		parse( this, url);
 	};
