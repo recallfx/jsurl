@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<script src="url.min.js"></script>
+		<script src="url.js"></script>
 	</head>
 	<body>
 		<script>
@@ -53,6 +53,7 @@
 
 				u.toString(), "Stringify URL"
 			);
+			assertEqual( str, u.toRelativeString(), "Stringify relative URL");
 
 			// relative URL
 			document.write( "<h4>Testing relative URL</h4>");
@@ -73,6 +74,7 @@
 				base + str,
 				u.toString(), "Stringify URL"
 			);
+			assertEqual( '/' + str, u.toRelativeString(), "Stringify relative URL");
 
 			// relative URL with upwards
 			var dirlen = document.location.href.match(/(.*\/)/)[0].replace( /.*?\/\/.*?\//, '/').split( '/').length - 2;
@@ -94,6 +96,7 @@
 				base + (!dirlen ? document.location.hostname + '/' : '') + 'some/path.html?foo=bar#anchor',
 				u.toString(), "Stringify URL"
 			);
+			assertEqual( '/' + 'some/path.html?foo=bar#anchor', u.toRelativeString(), "Stringify relative URL");
 
 			// relative URL with upwards out of base path
 			var dirlen = document.location.href.match(/(.*\/)/)[0].replace( /.*?\/\/.*?\//, '/').split( '/').length + 1;
@@ -115,6 +118,7 @@
 				base + document.location.host + '/' + 'some/path.html?foo=bar#anchor',
 				u.toString(), "Stringify URL"
 			);
+			assertEqual( '/' + 'some/path.html?foo=bar#anchor', u.toRelativeString(), "Stringify relative URL");
 			
 			// clear query
 			var url = new Url( 'http://example.com/?a=b=c=d=e=f=g=h#foo');
